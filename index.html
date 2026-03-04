@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BHAST HOUSE - Luxury Marketplace & Booking</title>
+    <title>BHAST HOUSE - Luxury Dark Booking</title>
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -20,8 +20,6 @@
             --neon-purple: #a855f7;
             --dark-bg: #0a0a0f;
             --card-bg: #13131f;
-            --mpesa-green: #00a650;
-            --paypal-blue: #003087;
         }
         
         body {
@@ -157,113 +155,6 @@
             opacity: 1;
             left: 100%;
         }
-        
-        .payment-method {
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-        
-        .payment-method:hover {
-            border-color: rgba(139, 92, 246, 0.5);
-            background: rgba(139, 92, 246, 0.1);
-        }
-        
-        .payment-method.selected {
-            border-color: #a855f7;
-            background: rgba(168, 85, 247, 0.15);
-        }
-        
-        .upload-zone {
-            border: 2px dashed rgba(139, 92, 246, 0.3);
-            transition: all 0.3s ease;
-        }
-        
-        .upload-zone:hover, .upload-zone.dragover {
-            border-color: #a855f7;
-            background: rgba(168, 85, 247, 0.05);
-        }
-        
-        .season-badge {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            z-index: 10;
-        }
-        
-        .season-sunny {
-            background: linear-gradient(135deg, #f59e0b, #fbbf24);
-            color: #000;
-        }
-        
-        .season-winter {
-            background: linear-gradient(135deg, #3b82f6, #60a5fa);
-            color: #fff;
-        }
-        
-        .season-autumn {
-            background: linear-gradient(135deg, #ea580c, #f97316);
-            color: #fff;
-        }
-        
-        .season-spring {
-            background: linear-gradient(135deg, #10b981, #34d399);
-            color: #000;
-        }
-        
-        .image-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 12px;
-        }
-        
-        .host-badge {
-            background: linear-gradient(135deg, #8b5cf6, #ec4899);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 600;
-        }
-        
-        .property-type-penthouse {
-            border-left: 4px solid #fbbf24;
-        }
-        
-        .property-type-mansion {
-            border-left: 4px solid #a855f7;
-        }
-        
-        .property-type-villa {
-            border-left: 4px solid #3b82f6;
-        }
-        
-        .property-type-apartment {
-            border-left: 4px solid #10b981;
-        }
-        
-        @keyframes pulse-ring {
-            0% { transform: scale(0.8); opacity: 0.5; }
-            100% { transform: scale(1.3); opacity: 0; }
-        }
-        
-        .live-indicator {
-            position: relative;
-        }
-        
-        .live-indicator::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: #10b981;
-            animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
-        }
     </style>
 </head>
 <body>
@@ -276,23 +167,11 @@
             Search, MapPin, Calendar, Users, Star, Heart, 
             Menu, X, ChevronRight, Wifi, Car, Coffee, 
             Waves, Dumbbell, Sparkles, ArrowRight, Check,
-            Moon, Sun, Filter, Grid, List, Upload, Plus,
-            CreditCard, Banknote, Smartphone, Wallet, Building,
-            Trash2, Edit, Eye, Home, Hotel, Castle, Image as ImageIcon,
-            Snowflake, Sun as SunIcon, CloudRain, Wind, Thermometer,
-            CheckCircle, AlertCircle, Shield, Lock
+            Moon, Sun, Filter, Grid, List
         } = lucide;
         
-        // Enhanced Backend API with Host Features
+        // Mock Backend API
         const API = {
-            currentUser: {
-                id: 1,
-                name: "Demo User",
-                email: "user@bhasthouse.com",
-                isHost: true,
-                balance: 5000
-            },
-            
             hotels: [
                 {
                     id: 1,
@@ -301,203 +180,82 @@
                     price: 289,
                     rating: 4.9,
                     reviews: 1284,
-                    images: [
-                        "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&q=80",
-                        "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=800&q=80",
-                        "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80"
-                    ],
-                    amenities: ["wifi", "pool", "gym", "spa", "concierge"],
-                    description: "Cyberpunk luxury in the heart of Tokyo's electric district. Panoramic city views from every room.",
-                    discount: 15,
-                    hostId: 101,
-                    hostName: "Luxury Stays Inc",
-                    propertyType: "penthouse",
-                    season: "sunny",
-                    maxGuests: 4,
-                    bedrooms: 2,
-                    bathrooms: 2,
-                    isAvailable: true
+                    image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&q=80",
+                    amenities: ["wifi", "pool", "gym", "spa"],
+                    description: "Cyberpunk luxury in the heart of Tokyo's electric district.",
+                    discount: 15
                 },
                 {
                     id: 2,
-                    name: "Alpine Winter Mansion",
-                    location: "Zermatt, Switzerland",
-                    price: 1200,
-                    rating: 5.0,
-                    reviews: 342,
-                    images: [
-                        "https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=800&q=80",
-                        "https://images.unsplash.com/photo-1587595431973-160d0d94add1?w=800&q=80",
-                        "https://images.unsplash.com/photo-1601918774757-6ecc4f48b6c4?w=800&q=80"
-                    ],
-                    amenities: ["wifi", "spa", "fireplace", "ski", "chef"],
-                    description: "Majestic mountain mansion with private ski access and heated infinity pool overlooking the Matterhorn.",
-                    discount: 0,
-                    hostId: 102,
-                    hostName: "Alpine Luxury",
-                    propertyType: "mansion",
-                    season: "winter",
-                    maxGuests: 12,
-                    bedrooms: 6,
-                    bathrooms: 5,
-                    isAvailable: true
+                    name: "Velvet Horizon Paris",
+                    location: "Le Marais, Paris",
+                    price: 445,
+                    rating: 4.8,
+                    reviews: 892,
+                    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80",
+                    amenities: ["wifi", "spa", "bar", "concierge"],
+                    description: "Where Haussmann architecture meets modern purple neon dreams.",
+                    discount: 0
                 },
                 {
                     id: 3,
-                    name: "Maldives Overwater Palace",
-                    location: "Malé Atoll, Maldives",
-                    price: 2500,
+                    name: "Obsidian Bay Resort",
+                    location: "Maldives",
+                    price: 899,
                     rating: 5.0,
-                    reviews: 156,
-                    images: [
-                        "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=80",
-                        "https://images.unsplash.com/photo-1540541338287-4172f0c1c37e?w=800&q=80",
-                        "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=800&q=80"
-                    ],
-                    amenities: ["wifi", "pool", "spa", "gym", "bar", "butler"],
-                    description: "Ultra-luxury overwater villa with glass floors, private infinity pool, and 24/7 butler service.",
-                    discount: 20,
-                    hostId: 103,
-                    hostName: "Oceanic Luxury",
-                    propertyType: "villa",
-                    season: "sunny",
-                    maxGuests: 2,
-                    bedrooms: 1,
-                    bathrooms: 1,
-                    isAvailable: true
+                    reviews: 456,
+                    image: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=80",
+                    amenities: ["wifi", "pool", "spa", "gym", "bar"],
+                    description: "Ultra-luxury overwater villas with private infinity pools.",
+                    discount: 20
                 },
                 {
                     id: 4,
-                    name: "Nordic Ice Penthouse",
-                    location: "Reykjavik, Iceland",
-                    price: 890,
-                    rating: 4.8,
-                    reviews: 423,
-                    images: [
-                        "https://images.unsplash.com/photo-1476610182048-b716b8518aae?w=800&q=80",
-                        "https://images.unsplash.com/photo-1520769945061-0a448c463865?w=800&q=80",
-                        "https://images.unsplash.com/photo-1502784444187-359ac186c5bb?w=800&q=80"
-                    ],
-                    amenities: ["wifi", "spa", "gym", "aurora", "geothermal"],
-                    description: "Glass-walled penthouse with panoramic aurora views, geothermal heating, and private hot springs.",
-                    discount: 10,
-                    hostId: 104,
-                    hostName: "Nordic Stays",
-                    propertyType: "penthouse",
-                    season: "winter",
-                    maxGuests: 6,
-                    bedrooms: 3,
-                    bathrooms: 2,
-                    isAvailable: true
+                    name: "Purple Haze NYC",
+                    location: "Manhattan, New York",
+                    price: 567,
+                    rating: 4.7,
+                    reviews: 2103,
+                    image: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800&q=80",
+                    amenities: ["wifi", "gym", "bar", "concierge"],
+                    description: "Rooftop infinity pool overlooking the Manhattan skyline.",
+                    discount: 10
                 },
                 {
                     id: 5,
-                    name: "Santorini Sunset Villa",
-                    location: "Oia, Santorini",
-                    price: 650,
+                    name: "Midnight Garden Kyoto",
+                    location: "Gion, Kyoto",
+                    price: 334,
                     rating: 4.9,
-                    reviews: 892,
-                    images: [
-                        "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=800&q=80",
-                        "https://images.unsplash.com/photo-1601581875309-fafbf2d3ed2a?w=800&q=80",
-                        "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800&q=80"
-                    ],
-                    amenities: ["wifi", "pool", "spa", "view", "breakfast"],
-                    description: "Iconic cave villa with infinity pool overlooking the caldera. World-famous sunset views.",
-                    discount: 0,
-                    hostId: 105,
-                    hostName: "Greek Escapes",
-                    propertyType: "villa",
-                    season: "sunny",
-                    maxGuests: 4,
-                    bedrooms: 2,
-                    bathrooms: 2,
-                    isAvailable: true
+                    reviews: 678,
+                    image: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=800&q=80",
+                    amenities: ["wifi", "spa", "garden", "tea"],
+                    description: "Traditional ryokan reimagined with contemporary dark aesthetics.",
+                    discount: 0
                 },
                 {
                     id: 6,
-                    name: "Aspen Snow Mansion",
-                    location: "Aspen, Colorado",
-                    price: 3500,
-                    rating: 5.0,
-                    reviews: 234,
-                    images: [
-                        "https://images.unsplash.com/photo-1518733057094-95b53143d2a7?w=800&q=80",
-                        "https://images.unsplash.com/photo-1602343168117-bb8ffe3e2e9f?w=800&q=80",
-                        "https://images.unsplash.com/photo-1587061949409-02df41d5e562?w=800&q=80"
-                    ],
-                    amenities: ["wifi", "spa", "gym", "ski", "cinema", "chef"],
-                    description: "Ultimate ski-in/ski-out mansion with private cinema, bowling alley, and heated outdoor pool.",
-                    discount: 0,
-                    hostId: 106,
-                    hostName: "Mountain Luxury",
-                    propertyType: "mansion",
-                    season: "winter",
-                    maxGuests: 16,
-                    bedrooms: 8,
-                    bathrooms: 6,
-                    isAvailable: true
-                },
-                {
-                    id: 7,
-                    name: "Dubai Marina Penthouse",
-                    location: "Dubai Marina, UAE",
-                    price: 1800,
+                    name: "Cosmic Sands Dubai",
+                    location: "Palm Jumeirah, Dubai",
+                    price: 1200,
                     rating: 4.9,
-                    reviews: 567,
-                    images: [
-                        "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80",
-                        "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80",
-                        "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&q=80"
-                    ],
+                    reviews: 334,
+                    image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80",
                     amenities: ["wifi", "pool", "spa", "gym", "bar", "concierge"],
-                    description: "Triplex penthouse with 360° views of the Marina, private elevator, and rooftop helipad access.",
-                    discount: 15,
-                    hostId: 107,
-                    hostName: "Desert Luxury",
-                    propertyType: "penthouse",
-                    season: "sunny",
-                    maxGuests: 8,
-                    bedrooms: 4,
-                    bathrooms: 4,
-                    isAvailable: true
-                },
-                {
-                    id: 8,
-                    name: "Swiss Alpine Chalet",
-                    location: "St. Moritz, Switzerland",
-                    price: 2200,
-                    rating: 4.9,
-                    reviews: 445,
-                    images: [
-                        "https://images.unsplash.com/photo-1601918774757-6ecc4f48b6c4?w=800&q=80",
-                        "https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=800&q=80",
-                        "https://images.unsplash.com/photo-1587595431973-160d0d94add1?w=800&q=80"
-                    ],
-                    amenities: ["wifi", "spa", "fireplace", "ski", "chef", "helipad"],
-                    description: "Historic chalet completely renovated with modern luxury. Private ski lift and spa wing.",
-                    discount: 0,
-                    hostId: 108,
-                    hostName: "Alpine Heritage",
-                    propertyType: "mansion",
-                    season: "winter",
-                    maxGuests: 10,
-                    bedrooms: 5,
-                    bathrooms: 4,
-                    isAvailable: true
+                    description: "Futuristic architecture meets Arabian luxury under the stars.",
+                    discount: 25
                 }
             ],
             
             bookings: [],
             
             searchHotels: async (filters) => {
-                await new Promise(resolve => setTimeout(resolve, 600));
+                await new Promise(resolve => setTimeout(resolve, 800));
                 let results = [...API.hotels];
                 
                 if (filters.location) {
                     results = results.filter(h => 
-                        h.location.toLowerCase().includes(filters.location.toLowerCase()) ||
-                        h.name.toLowerCase().includes(filters.location.toLowerCase())
+                        h.location.toLowerCase().includes(filters.location.toLowerCase())
                     );
                 }
                 if (filters.minPrice) {
@@ -511,61 +269,25 @@
                         filters.amenities.every(a => h.amenities.includes(a))
                     );
                 }
-                if (filters.propertyType) {
-                    results = results.filter(h => h.propertyType === filters.propertyType);
-                }
-                if (filters.season) {
-                    results = results.filter(h => h.season === filters.season);
-                }
-                if (filters.sort === 'price-low') {
-                    results.sort((a, b) => a.price - b.price);
-                } else if (filters.sort === 'price-high') {
-                    results.sort((a, b) => b.price - a.price);
-                } else if (filters.sort === 'rating') {
-                    results.sort((a, b) => b.rating - a.rating);
-                }
                 
                 return results;
             },
             
             createBooking: async (bookingData) => {
-                await new Promise(resolve => setTimeout(resolve, 1200));
+                await new Promise(resolve => setTimeout(resolve, 1000));
                 const booking = {
                     id: Date.now(),
                     ...bookingData,
                     status: 'confirmed',
-                    createdAt: new Date().toISOString(),
-                    confirmationCode: 'BH' + Math.random().toString(36).substr(2, 6).toUpperCase()
+                    createdAt: new Date().toISOString()
                 };
                 API.bookings.push(booking);
                 return booking;
             },
             
             getBookings: async () => {
-                await new Promise(resolve => setTimeout(resolve, 400));
+                await new Promise(resolve => setTimeout(resolve, 500));
                 return API.bookings;
-            },
-            
-            addProperty: async (propertyData) => {
-                await new Promise(resolve => setTimeout(resolve, 1500));
-                const newProperty = {
-                    id: Date.now(),
-                    ...propertyData,
-                    hostId: API.currentUser.id,
-                    hostName: API.currentUser.name,
-                    rating: 0,
-                    reviews: 0,
-                    isAvailable: true,
-                    createdAt: new Date().toISOString()
-                };
-                API.hotels.unshift(newProperty);
-                return newProperty;
-            },
-            
-            deleteProperty: async (id) => {
-                await new Promise(resolve => setTimeout(resolve, 600));
-                API.hotels = API.hotels.filter(h => h.id !== id);
-                return { success: true };
             }
         };
 
@@ -578,68 +300,13 @@
                 bar: <Coffee size={16} />,
                 car: <Car size={16} />,
                 concierge: <Users size={16} />,
-                fireplace: <div className="text-orange-400">🔥</div>,
-                ski: <Snowflake size={16} />,
-                chef: <div className="text-yellow-400">👨‍🍳</div>,
-                butler: <div className="text-purple-400">🎩</div>,
-                view: <SunIcon size={16} />,
-                breakfast: <Coffee size={16} />,
-                cinema: <div className="text-pink-400">🎬</div>,
-                helipad: <div className="text-blue-400">🚁</div>,
-                aurora: <div className="text-green-400">🌌</div>,
-                geothermal: <div className="text-red-400">♨️</div>
+                garden: <Sparkles size={16} />,
+                tea: <Coffee size={16} />
             };
             return icons[type] || <Star size={16} />;
         };
 
-        const SeasonBadge = ({ season }) => {
-            const styles = {
-                sunny: 'season-sunny',
-                winter: 'season-winter',
-                autumn: 'season-autumn',
-                spring: 'season-spring'
-            };
-            const icons = {
-                sunny: <SunIcon size={12} className="inline mr-1" />,
-                winter: <Snowflake size={12} className="inline mr-1" />,
-                autumn: <CloudRain size={12} className="inline mr-1" />,
-                spring: <Wind size={12} className="inline mr-1" />
-            };
-            return (
-                <div className={`season-badge ${styles[season]}`}>
-                    {icons[season]}
-                    {season}
-                </div>
-            );
-        };
-
-        const PropertyTypeBadge = ({ type }) => {
-            const labels = {
-                penthouse: '🏢 Penthouse',
-                mansion: '🏰 Mansion',
-                villa: '🏝️ Villa',
-                apartment: '🏠 Apartment'
-            };
-            return <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider">{labels[type] || type}</span>;
-        };
-
-        const PaymentMethodCard = ({ method, selected, onClick, icon: Icon, title, subtitle, color }) => (
-            <div 
-                onClick={() => onClick(method)}
-                className={`payment-method p-4 rounded-xl cursor-pointer flex items-center gap-4 ${selected ? 'selected' : 'bg-white/5'}`}
-            >
-                <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${color}`}>
-                    <Icon size={24} className="text-white" />
-                </div>
-                <div className="flex-1">
-                    <h4 className="font-semibold text-white">{title}</h4>
-                    <p className="text-sm text-gray-400">{subtitle}</p>
-                </div>
-                {selected && <CheckCircle size={20} className="text-purple-400" />}
-            </div>
-        );
-
-        const Navbar = ({ activeTab, setActiveTab, cartCount }) => {
+        const Navbar = ({ cartCount }) => {
             const [isScrolled, setIsScrolled] = useState(false);
             const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
             
@@ -649,19 +316,10 @@
                 return () => window.removeEventListener('scroll', handleScroll);
             }, []);
             
-            const navItems = [
-                { id: 'explore', label: 'Explore', icon: Search },
-                { id: 'host', label: 'Become a Host', icon: Plus },
-                { id: 'trips', label: 'My Trips', icon: Calendar },
-            ];
-            
             return (
                 <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'glass-panel py-3' : 'bg-transparent py-6'}`}>
                     <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-                        <div 
-                            className="flex items-center gap-2 cursor-pointer"
-                            onClick={() => setActiveTab('explore')}
-                        >
+                        <div className="flex items-center gap-2">
                             <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-pink-600 rounded-xl flex items-center justify-center">
                                 <span className="text-white font-bold text-lg">B</span>
                             </div>
@@ -670,35 +328,13 @@
                             </span>
                         </div>
                         
-                        <div className="hidden md:flex items-center gap-1 bg-white/5 rounded-full p-1">
-                            {navItems.map(item => (
-                                <button
-                                    key={item.id}
-                                    onClick={() => setActiveTab(item.id)}
-                                    className={`flex items-center gap-2 px-6 py-2.5 rounded-full font-medium transition-all ${
-                                        activeTab === item.id 
-                                            ? 'bg-purple-600 text-white shadow-lg shadow-purple-500/30' 
-                                            : 'text-gray-300 hover:text-white hover:bg-white/5'
-                                    }`}
-                                >
-                                    <item.icon size={18} />
-                                    {item.label}
-                                </button>
-                            ))}
-                        </div>
-                        
-                        <div className="hidden md:flex items-center gap-4">
-                            <button className="relative p-2 text-gray-300 hover:text-white transition-colors">
-                                <Heart size={24} />
-                                {cartCount > 0 && (
-                                    <span className="absolute -top-1 -right-1 w-5 h-5 bg-pink-600 rounded-full text-xs flex items-center justify-center text-white font-bold">
-                                        {cartCount}
-                                    </span>
-                                )}
+                        <div className="hidden md:flex items-center gap-8">
+                            <a href="#" className="text-gray-300 hover:text-purple-400 transition-colors">Destinations</a>
+                            <a href="#" className="text-gray-300 hover:text-purple-400 transition-colors">Deals</a>
+                            <a href="#" className="text-gray-300 hover:text-purple-400 transition-colors">My Trips</a>
+                            <button className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2.5 rounded-full font-medium transition-all hover:shadow-lg hover:shadow-purple-500/30">
+                                Sign In
                             </button>
-                            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center text-white font-bold cursor-pointer">
-                                {API.currentUser.name[0]}
-                            </div>
                         </div>
                         
                         <button className="md:hidden text-white" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
@@ -709,19 +345,10 @@
                     {mobileMenuOpen && (
                         <div className="md:hidden glass-panel mt-4 mx-6 p-6 rounded-2xl">
                             <div className="flex flex-col gap-4">
-                                {navItems.map(item => (
-                                    <button
-                                        key={item.id}
-                                        onClick={() => {
-                                            setActiveTab(item.id);
-                                            setMobileMenuOpen(false);
-                                        }}
-                                        className={`flex items-center gap-3 p-3 rounded-xl ${activeTab === item.id ? 'bg-purple-600/20 text-purple-400' : 'text-gray-300'}`}
-                                    >
-                                        <item.icon size={20} />
-                                        {item.label}
-                                    </button>
-                                ))}
+                                <a href="#" className="text-gray-300">Destinations</a>
+                                <a href="#" className="text-gray-300">Deals</a>
+                                <a href="#" className="text-gray-300">My Trips</a>
+                                <button className="bg-purple-600 text-white px-6 py-3 rounded-full w-full">Sign In</button>
                             </div>
                         </div>
                     )}
@@ -747,22 +374,17 @@
                     <div className="absolute inset-0 opacity-30">
                         <div className="absolute top-20 left-10 w-72 h-72 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
                         <div className="absolute bottom-20 right-10 w-96 h-96 bg-pink-600 rounded-full mix-blend-multiply filter blur-3xl animate-pulse delay-1000"></div>
-                        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl animate-pulse delay-2000"></div>
                     </div>
                     
                     <div className="max-w-5xl w-full relative z-10">
                         <div className="text-center mb-12">
-                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-purple-500/20 mb-6">
-                                <span className="live-indicator w-2 h-2 bg-green-500 rounded-full"></span>
-                                <span className="text-sm text-gray-300">1,234 luxury properties available now</span>
-                            </div>
                             <h1 className="font-display text-5xl md:text-7xl font-bold mb-6 leading-tight">
                                 Discover Your <br />
                                 <span className="text-gradient">Perfect Escape</span>
                             </h1>
                             <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto">
-                                From penthouses in the clouds to winter mansions in the Alps. 
-                                List your property or book your dream stay.
+                                Curated luxury stays in the world's most vibrant destinations. 
+                                Dark aesthetics, premium comfort.
                             </p>
                         </div>
                         
@@ -772,7 +394,7 @@
                                     <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-purple-400" size={20} />
                                     <input 
                                         type="text" 
-                                        placeholder="Where to? (City or Property)"
+                                        placeholder="Where to?"
                                         className="search-input w-full pl-12 pr-4 py-4 rounded-2xl text-white placeholder-gray-500"
                                         value={searchData.location}
                                         onChange={(e) => setSearchData({...searchData, location: e.target.value})}
@@ -796,7 +418,7 @@
                                         value={searchData.guests}
                                         onChange={(e) => setSearchData({...searchData, guests: e.target.value})}
                                     >
-                                        {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16].map(n => (
+                                        {[1,2,3,4,5,6].map(n => (
                                             <option key={n} value={n} className="bg-gray-900">{n} Guest{n>1?'s':''}</option>
                                         ))}
                                     </select>
@@ -812,176 +434,112 @@
                             </form>
                         </div>
                         
-                        <div className="flex flex-wrap justify-center gap-4 mt-8">
-                            {['Penthouses', 'Mansions', 'Villas', 'Winter Stays', 'Beachfront'].map((tag) => (
-                                <button 
-                                    key={tag}
-                                    className="px-6 py-2 rounded-full bg-white/5 border border-purple-500/20 text-gray-300 hover:bg-purple-600/20 hover:border-purple-500/50 transition-all text-sm"
-                                >
-                                    {tag}
-                                </button>
-                            ))}
+                        <div className="flex justify-center gap-8 mt-12 text-gray-400 text-sm">
+                            <div className="flex items-center gap-2">
+                                <Check size={16} className="text-purple-400" />
+                                <span>Free cancellation</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <Check size={16} className="text-purple-400" />
+                                <span>Price match guarantee</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <Check size={16} className="text-purple-400" />
+                                <span>24/7 support</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             );
         };
 
-        const HotelCard = ({ hotel, onBook, onDelete, isHostView }) => {
+        const HotelCard = ({ hotel, onBook }) => {
             const [isLiked, setIsLiked] = useState(false);
-            const [currentImage, setCurrentImage] = useState(0);
             const [imageLoaded, setImageLoaded] = useState(false);
             
-            const nextImage = (e) => {
-                e.stopPropagation();
-                setCurrentImage((prev) => (prev + 1) % hotel.images.length);
-                setImageLoaded(false);
-            };
-            
             return (
-                <div className={`group relative bg-gray-900/50 rounded-3xl overflow-hidden hover-lift card-shine border border-purple-500/10 ${hotel.propertyType === 'penthouse' ? 'property-type-penthouse' : ''} ${hotel.propertyType === 'mansion' ? 'property-type-mansion' : ''}`}>
-                    <div className="relative h-72 overflow-hidden">
-                        <SeasonBadge season={hotel.season} />
-                        
+                <div className="group relative bg-gray-900/50 rounded-3xl overflow-hidden hover-lift card-shine border border-purple-500/10">
+                    <div className="relative h-64 overflow-hidden">
                         {!imageLoaded && (
                             <div className="absolute inset-0 bg-gray-800 animate-pulse flex items-center justify-center">
                                 <div className="loader"></div>
                             </div>
                         )}
-                        
                         <img 
-                            src={hotel.images[currentImage]} 
+                            src={hotel.image} 
                             alt={hotel.name}
                             className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
                             onLoad={() => setImageLoaded(true)}
                         />
-                        
-                        {hotel.images.length > 1 && (
-                            <>
-                                <button 
-                                    onClick={nextImage}
-                                    className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 backdrop-blur-md flex items-center justify-center text-white hover:bg-black/70 transition-all opacity-0 group-hover:opacity-100"
-                                >
-                                    <ChevronRight size={20} />
-                                </button>
-                                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1">
-                                    {hotel.images.map((_, idx) => (
-                                        <div 
-                                            key={idx} 
-                                            className={`w-2 h-2 rounded-full transition-all ${idx === currentImage ? 'bg-white w-4' : 'bg-white/50'}`}
-                                        />
-                                    ))}
-                                </div>
-                            </>
-                        )}
-                        
                         <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-60"></div>
                         
                         {hotel.discount > 0 && (
-                            <div className="absolute top-12 left-4 bg-gradient-to-r from-pink-600 to-purple-600 text-white px-3 py-1 rounded-full text-sm font-bold">
+                            <div className="absolute top-4 left-4 bg-gradient-to-r from-pink-600 to-purple-600 text-white px-3 py-1 rounded-full text-sm font-bold">
                                 -{hotel.discount}%
                             </div>
                         )}
                         
-                        {!isHostView && (
-                            <button 
-                                onClick={() => setIsLiked(!isLiked)}
-                                className="absolute top-4 right-4 p-2 rounded-full bg-black/30 backdrop-blur-md hover:bg-black/50 transition-all"
-                            >
-                                <Heart 
-                                    size={20} 
-                                    className={isLiked ? "fill-pink-500 text-pink-500" : "text-white"} 
-                                />
-                            </button>
-                        )}
-                        
-                        {isHostView && (
-                            <div className="absolute top-4 right-4 flex gap-2">
-                                <button 
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        onDelete(hotel.id);
-                                    }}
-                                    className="p-2 rounded-full bg-red-500/80 backdrop-blur-md hover:bg-red-600 transition-all text-white"
-                                >
-                                    <Trash2 size={18} />
-                                </button>
-                            </div>
-                        )}
+                        <button 
+                            onClick={() => setIsLiked(!isLiked)}
+                            className="absolute top-4 right-4 p-2 rounded-full bg-black/30 backdrop-blur-md hover:bg-black/50 transition-all"
+                        >
+                            <Heart 
+                                size={20} 
+                                className={isLiked ? "fill-pink-500 text-pink-500" : "text-white"} 
+                            />
+                        </button>
                         
                         <div className="absolute bottom-4 left-4 right-4">
-                            <div className="flex items-center justify-between mb-2">
-                                <PropertyTypeBadge type={hotel.propertyType} />
-                                <div className="flex items-center gap-1 text-yellow-400">
-                                    <Star size={14} fill="currentColor" />
-                                    <span className="text-white text-sm font-bold">{hotel.rating > 0 ? hotel.rating : 'New'}</span>
-                                    <span className="text-gray-400 text-xs">({hotel.reviews})</span>
-                                </div>
+                            <div className="flex items-center gap-1 text-yellow-400 mb-1">
+                                {[...Array(5)].map((_, i) => (
+                                    <Star 
+                                        key={i} 
+                                        size={14} 
+                                        fill={i < Math.floor(hotel.rating) ? "currentColor" : "none"} 
+                                        className={i < Math.floor(hotel.rating) ? "" : "text-gray-600"}
+                                    />
+                                ))}
+                                <span className="text-white text-sm ml-1">{hotel.rating}</span>
+                                <span className="text-gray-400 text-xs">({hotel.reviews})</span>
                             </div>
                         </div>
                     </div>
                     
                     <div className="p-6">
                         <div className="flex justify-between items-start mb-2">
-                            <div className="flex-1">
-                                <h3 className="font-display font-bold text-xl text-white mb-1 group-hover:text-purple-400 transition-colors line-clamp-1">
+                            <div>
+                                <h3 className="font-display font-bold text-xl text-white mb-1 group-hover:text-purple-400 transition-colors">
                                     {hotel.name}
                                 </h3>
-                                <div className="flex items-center gap-1 text-gray-400 text-sm mb-2">
+                                <div className="flex items-center gap-1 text-gray-400 text-sm">
                                     <MapPin size={14} />
                                     {hotel.location}
                                 </div>
                             </div>
-                            <div className="text-right ml-4">
+                            <div className="text-right">
                                 <div className="text-2xl font-bold text-white">${hotel.price}</div>
                                 <div className="text-gray-500 text-xs">per night</div>
                             </div>
                         </div>
                         
-                        <div className="flex items-center gap-4 text-sm text-gray-400 mb-3">
-                            <span>{hotel.maxGuests} guests</span>
-                            <span>•</span>
-                            <span>{hotel.bedrooms} bd</span>
-                            <span>•</span>
-                            <span>{hotel.bathrooms} ba</span>
-                        </div>
-                        
                         <p className="text-gray-400 text-sm mb-4 line-clamp-2">{hotel.description}</p>
                         
-                        <div className="flex gap-2 mb-4 flex-wrap">
+                        <div className="flex gap-2 mb-6 flex-wrap">
                             {hotel.amenities.slice(0, 4).map(amenity => (
                                 <div key={amenity} className="flex items-center gap-1 text-xs text-gray-400 bg-white/5 px-2 py-1 rounded-lg">
                                     <AmenityIcon type={amenity} />
                                     <span className="capitalize">{amenity}</span>
                                 </div>
                             ))}
-                            {hotel.amenities.length > 4 && (
-                                <div className="text-xs text-purple-400 bg-purple-500/10 px-2 py-1 rounded-lg">
-                                    +{hotel.amenities.length - 4} more
-                                </div>
-                            )}
                         </div>
                         
-                        <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-2">
-                                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center text-white text-xs font-bold">
-                                    {hotel.hostName[0]}
-                                </div>
-                                <span className="text-xs text-gray-400">Hosted by {hotel.hostName}</span>
-                            </div>
-                            
-                            {!isHostView ? (
-                                <button 
-                                    onClick={() => onBook(hotel)}
-                                    className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-2 px-6 rounded-xl transition-all flex items-center gap-2 text-sm"
-                                >
-                                    Book Now
-                                    <ArrowRight size={16} />
-                                </button>
-                            ) : (
-                                <span className="host-badge">Your Listing</span>
-                            )}
-                        </div>
+                        <button 
+                            onClick={() => onBook(hotel)}
+                            className="w-full bg-white/5 hover:bg-purple-600 border border-purple-500/30 hover:border-purple-500 text-white font-semibold py-3 rounded-xl transition-all flex items-center justify-center gap-2 group/btn"
+                        >
+                            Book Now
+                            <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
+                        </button>
                     </div>
                 </div>
             );
@@ -990,13 +548,11 @@
         const BookingModal = ({ hotel, onClose, onConfirm }) => {
             const [step, setStep] = useState(1);
             const [loading, setLoading] = useState(false);
-            const [paymentMethod, setPaymentMethod] = useState('card');
             const [bookingData, setBookingData] = useState({
                 name: '',
                 email: '',
                 phone: '',
-                specialRequests: '',
-                nights: 3
+                specialRequests: ''
             });
             
             const handleConfirm = async () => {
@@ -1006,12 +562,10 @@
                         hotelId: hotel.id,
                         hotelName: hotel.name,
                         ...bookingData,
-                        paymentMethod,
-                        totalPrice: hotel.price * bookingData.nights,
+                        totalPrice: hotel.price * 3, // Mock 3 nights
                         date: new Date().toISOString()
                     });
-                    setStep(4);
-                    onConfirm();
+                    setStep(3);
                 } catch (error) {
                     alert('Booking failed');
                 } finally {
@@ -1021,309 +575,125 @@
             
             if (!hotel) return null;
             
-            const total = hotel.price * bookingData.nights;
-            const fees = Math.round(total * 0.12);
-            const finalTotal = total + fees;
-            
             return (
-                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm overflow-y-auto">
-                    <div className="glass-panel rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 relative my-8">
-                        <button onClick={onClose} className="absolute top-4 right-4 text-gray-400 hover:text-white z-10">
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+                    <div className="glass-panel rounded-3xl max-w-md w-full max-h-[90vh] overflow-y-auto p-6 relative">
+                        <button onClick={onClose} className="absolute top-4 right-4 text-gray-400 hover:text-white">
                             <X size={24} />
                         </button>
                         
-                        <div className="flex items-center gap-4 mb-6">
-                            <div className="w-12 h-12 rounded-xl overflow-hidden">
-                                <img src={hotel.images[0]} alt="" className="w-full h-full object-cover" />
-                            </div>
-                            <div>
-                                <h2 className="font-display text-xl font-bold text-white">{hotel.name}</h2>
-                                <p className="text-gray-400 text-sm">{hotel.location}</p>
-                            </div>
-                        </div>
-                        
                         {step === 1 && (
-                            <div className="space-y-6">
-                                <h3 className="font-display text-lg font-semibold text-white mb-4">Trip Details</h3>
-                                
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div>
-                                        <label className="text-gray-400 text-sm mb-2 block">Check-in</label>
-                                        <input 
-                                            type="date" 
-                                            className="search-input w-full px-4 py-3 rounded-xl text-white"
-                                            defaultValue={new Date().toISOString().split('T')[0]}
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="text-gray-400 text-sm mb-2 block">Check-out</label>
-                                        <input 
-                                            type="date" 
-                                            className="search-input w-full px-4 py-3 rounded-xl text-white"
-                                            defaultValue={new Date(Date.now() + 3*24*60*60*1000).toISOString().split('T')[0]}
-                                        />
+                            <>
+                                <h2 className="font-display text-2xl font-bold mb-4">Complete Your Booking</h2>
+                                <div className="bg-purple-900/20 rounded-2xl p-4 mb-6 border border-purple-500/20">
+                                    <div className="flex gap-4">
+                                        <img src={hotel.image} className="w-20 h-20 rounded-xl object-cover" alt="" />
+                                        <div>
+                                            <h3 className="font-bold text-white">{hotel.name}</h3>
+                                            <p className="text-gray-400 text-sm">{hotel.location}</p>
+                                            <p className="text-purple-400 font-bold mt-1">${hotel.price}/night</p>
+                                        </div>
                                     </div>
                                 </div>
                                 
-                                <div>
-                                    <label className="text-gray-400 text-sm mb-2 block">Number of Nights</label>
-                                    <div className="flex items-center gap-4">
-                                        <button 
-                                            onClick={() => setBookingData({...bookingData, nights: Math.max(1, bookingData.nights - 1)})}
-                                            className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-purple-600 transition-colors"
-                                        >
-                                            -
-                                        </button>
-                                        <span className="text-xl font-bold text-white w-12 text-center">{bookingData.nights}</span>
-                                        <button 
-                                            onClick={() => setBookingData({...bookingData, nights: bookingData.nights + 1})}
-                                            className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-purple-600 transition-colors"
-                                        >
-                                            +
-                                        </button>
-                                    </div>
-                                </div>
-                                
-                                <div className="bg-white/5 rounded-xl p-4 border border-purple-500/20">
-                                    <div className="flex justify-between mb-2">
-                                        <span className="text-gray-400">${hotel.price} x {bookingData.nights} nights</span>
-                                        <span className="text-white">${total}</span>
-                                    </div>
-                                    <div className="flex justify-between mb-2">
-                                        <span className="text-gray-400">Service fee (12%)</span>
-                                        <span className="text-white">${fees}</span>
-                                    </div>
-                                    <div className="border-t border-gray-700 pt-2 mt-2 flex justify-between font-bold text-lg">
-                                        <span className="text-white">Total</span>
-                                        <span className="text-purple-400">${finalTotal}</span>
-                                    </div>
+                                <div className="space-y-4">
+                                    <input 
+                                        type="text" 
+                                        placeholder="Full Name"
+                                        className="search-input w-full px-4 py-3 rounded-xl text-white"
+                                        value={bookingData.name}
+                                        onChange={e => setBookingData({...bookingData, name: e.target.value})}
+                                    />
+                                    <input 
+                                        type="email" 
+                                        placeholder="Email Address"
+                                        className="search-input w-full px-4 py-3 rounded-xl text-white"
+                                        value={bookingData.email}
+                                        onChange={e => setBookingData({...bookingData, email: e.target.value})}
+                                    />
+                                    <input 
+                                        type="tel" 
+                                        placeholder="Phone Number"
+                                        className="search-input w-full px-4 py-3 rounded-xl text-white"
+                                        value={bookingData.phone}
+                                        onChange={e => setBookingData({...bookingData, phone: e.target.value})}
+                                    />
+                                    <textarea 
+                                        placeholder="Special Requests (optional)"
+                                        className="search-input w-full px-4 py-3 rounded-xl text-white h-24 resize-none"
+                                        value={bookingData.specialRequests}
+                                        onChange={e => setBookingData({...bookingData, specialRequests: e.target.value})}
+                                    />
                                 </div>
                                 
                                 <button 
                                     onClick={() => setStep(2)}
-                                    className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-4 rounded-xl hover:shadow-lg hover:shadow-purple-500/30 transition-all"
+                                    disabled={!bookingData.name || !bookingData.email}
+                                    className="w-full mt-6 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-4 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg hover:shadow-purple-500/30 transition-all"
                                 >
-                                    Continue to Guest Info
+                                    Continue to Payment
                                 </button>
-                            </div>
+                            </>
                         )}
                         
                         {step === 2 && (
-                            <div className="space-y-4">
-                                <h3 className="font-display text-lg font-semibold text-white mb-4">Guest Information</h3>
-                                
-                                <input 
-                                    type="text" 
-                                    placeholder="Full Name"
-                                    className="search-input w-full px-4 py-3 rounded-xl text-white"
-                                    value={bookingData.name}
-                                    onChange={e => setBookingData({...bookingData, name: e.target.value})}
-                                />
-                                <input 
-                                    type="email" 
-                                    placeholder="Email Address"
-                                    className="search-input w-full px-4 py-3 rounded-xl text-white"
-                                    value={bookingData.email}
-                                    onChange={e => setBookingData({...bookingData, email: e.target.value})}
-                                />
-                                <input 
-                                    type="tel" 
-                                    placeholder="Phone Number"
-                                    className="search-input w-full px-4 py-3 rounded-xl text-white"
-                                    value={bookingData.phone}
-                                    onChange={e => setBookingData({...bookingData, phone: e.target.value})}
-                                />
-                                <textarea 
-                                    placeholder="Special Requests (optional)"
-                                    className="search-input w-full px-4 py-3 rounded-xl text-white h-24 resize-none"
-                                    value={bookingData.specialRequests}
-                                    onChange={e => setBookingData({...bookingData, specialRequests: e.target.value})}
-                                />
-                                
-                                <div className="flex gap-3 mt-6">
-                                    <button 
-                                        onClick={() => setStep(1)}
-                                        className="flex-1 bg-white/10 text-white font-bold py-4 rounded-xl hover:bg-white/20 transition-all"
-                                    >
-                                        Back
-                                    </button>
-                                    <button 
-                                        onClick={() => setStep(3)}
-                                        disabled={!bookingData.name || !bookingData.email}
-                                        className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-4 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg hover:shadow-purple-500/30 transition-all"
-                                    >
-                                        Continue to Payment
-                                    </button>
+                            <>
+                                <h2 className="font-display text-2xl font-bold mb-4">Payment Details</h2>
+                                <div className="space-y-4">
+                                    <div className="p-4 bg-white/5 rounded-xl border border-purple-500/20">
+                                        <div className="flex justify-between mb-2">
+                                            <span className="text-gray-400">3 nights</span>
+                                            <span className="text-white">${hotel.price * 3}</span>
+                                        </div>
+                                        <div className="flex justify-between mb-2">
+                                            <span className="text-gray-400">Taxes & fees</span>
+                                            <span className="text-white">${Math.round(hotel.price * 3 * 0.15)}</span>
+                                        </div>
+                                        <div className="border-t border-gray-700 pt-2 mt-2 flex justify-between font-bold text-lg">
+                                            <span className="text-white">Total</span>
+                                            <span className="text-purple-400">${Math.round(hotel.price * 3 * 1.15)}</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <input 
+                                        type="text" 
+                                        placeholder="Card Number"
+                                        className="search-input w-full px-4 py-3 rounded-xl text-white"
+                                        defaultValue="4242 4242 4242 4242"
+                                    />
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <input 
+                                            type="text" 
+                                            placeholder="MM/YY"
+                                            className="search-input w-full px-4 py-3 rounded-xl text-white"
+                                            defaultValue="12/25"
+                                        />
+                                        <input 
+                                            type="text" 
+                                            placeholder="CVC"
+                                            className="search-input w-full px-4 py-3 rounded-xl text-white"
+                                            defaultValue="123"
+                                        />
+                                    </div>
                                 </div>
-                            </div>
+                                
+                                <button 
+                                    onClick={handleConfirm}
+                                    disabled={loading}
+                                    className="w-full mt-6 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2"
+                                >
+                                    {loading ? <div className="loader w-5 h-5 border-2"></div> : 'Confirm Booking'}
+                                </button>
+                            </>
                         )}
                         
                         {step === 3 && (
-                            <div className="space-y-4">
-                                <h3 className="font-display text-lg font-semibold text-white mb-4">Select Payment Method</h3>
-                                
-                                <div className="space-y-3">
-                                    <PaymentMethodCard 
-                                        method="card"
-                                        selected={paymentMethod === 'card'}
-                                        onClick={setPaymentMethod}
-                                        icon={CreditCard}
-                                        title="Credit/Debit Card"
-                                        subtitle="Visa, Mastercard, Amex"
-                                        color="bg-gradient-to-br from-purple-600 to-indigo-600"
-                                    />
-                                    
-                                    <PaymentMethodCard 
-                                        method="mpesa"
-                                        selected={paymentMethod === 'mpesa'}
-                                        onClick={setPaymentMethod}
-                                        icon={Smartphone}
-                                        title="M-Pesa"
-                                        subtitle="Mobile money - Kenya"
-                                        color="bg-[#00a650]"
-                                    />
-                                    
-                                    <PaymentMethodCard 
-                                        method="paypal"
-                                        selected={paymentMethod === 'paypal'}
-                                        onClick={setPaymentMethod}
-                                        icon={Wallet}
-                                        title="PayPal"
-                                        subtitle="Fast & secure checkout"
-                                        color="bg-[#003087]"
-                                    />
-                                    
-                                    <PaymentMethodCard 
-                                        method="bank"
-                                        selected={paymentMethod === 'bank'}
-                                        onClick={setPaymentMethod}
-                                        icon={Building}
-                                        title="Bank Transfer"
-                                        subtitle="Direct bank deposit"
-                                        color="bg-gradient-to-br from-green-600 to-emerald-600"
-                                    />
-                                </div>
-                                
-                                {paymentMethod === 'card' && (
-                                    <div className="mt-4 space-y-3 p-4 bg-white/5 rounded-xl border border-purple-500/20">
-                                        <input 
-                                            type="text" 
-                                            placeholder="Card Number"
-                                            className="search-input w-full px-4 py-3 rounded-xl text-white"
-                                            defaultValue="4242 4242 4242 4242"
-                                        />
-                                        <div className="grid grid-cols-2 gap-3">
-                                            <input 
-                                                type="text" 
-                                                placeholder="MM/YY"
-                                                className="search-input w-full px-4 py-3 rounded-xl text-white"
-                                                defaultValue="12/25"
-                                            />
-                                            <input 
-                                                type="text" 
-                                                placeholder="CVC"
-                                                className="search-input w-full px-4 py-3 rounded-xl text-white"
-                                                defaultValue="123"
-                                            />
-                                        </div>
-                                        <input 
-                                            type="text" 
-                                            placeholder="Cardholder Name"
-                                            className="search-input w-full px-4 py-3 rounded-xl text-white"
-                                            defaultValue={bookingData.name}
-                                        />
-                                    </div>
-                                )}
-                                
-                                {paymentMethod === 'mpesa' && (
-                                    <div className="mt-4 p-4 bg-[#00a650]/10 rounded-xl border border-[#00a650]/30">
-                                        <div className="flex items-center gap-3 mb-3">
-                                            <Smartphone className="text-[#00a650]" size={24} />
-                                            <div>
-                                                <p className="text-white font-semibold">M-Pesa Payment</p>
-                                                <p className="text-gray-400 text-sm">You will receive an STK push</p>
-                                            </div>
-                                        </div>
-                                        <input 
-                                            type="tel" 
-                                            placeholder="M-Pesa Phone Number (254...)"
-                                            className="search-input w-full px-4 py-3 rounded-xl text-white"
-                                            defaultValue="254712345678"
-                                        />
-                                    </div>
-                                )}
-                                
-                                {paymentMethod === 'paypal' && (
-                                    <div className="mt-4 p-4 bg-[#003087]/10 rounded-xl border border-[#003087]/30 text-center">
-                                        <p className="text-gray-300 mb-3">You will be redirected to PayPal to complete payment</p>
-                                        <div className="w-full h-12 bg-[#003087] rounded-lg flex items-center justify-center text-white font-bold">
-                                            Pay with PayPal
-                                        </div>
-                                    </div>
-                                )}
-                                
-                                {paymentMethod === 'bank' && (
-                                    <div className="mt-4 p-4 bg-white/5 rounded-xl border border-purple-500/20 space-y-2 text-sm">
-                                        <p className="text-gray-300 font-semibold mb-2">Bank Details:</p>
-                                        <div className="flex justify-between">
-                                            <span className="text-gray-400">Bank Name:</span>
-                                            <span className="text-white">International Bank</span>
-                                        </div>
-                                        <div className="flex justify-between">
-                                            <span className="text-gray-400">Account Name:</span>
-                                            <span className="text-white">BHAST HOUSE Ltd</span>
-                                        </div>
-                                        <div className="flex justify-between">
-                                            <span className="text-gray-400">Account Number:</span>
-                                            <span className="text-white font-mono">1234567890</span>
-                                        </div>
-                                        <div className="flex justify-between">
-                                            <span className="text-gray-400">SWIFT:</span>
-                                            <span className="text-white font-mono">INTLBANKXX</span>
-                                        </div>
-                                        <p className="text-xs text-gray-500 mt-3">Reference: Booking #{Date.now().toString().slice(-6)}</p>
-                                    </div>
-                                )}
-                                
-                                <div className="flex items-center gap-2 text-sm text-gray-400 mt-4">
-                                    <Lock size={14} />
-                                    <span>Secure SSL encryption</span>
-                                </div>
-                                
-                                <div className="flex gap-3 mt-6">
-                                    <button 
-                                        onClick={() => setStep(2)}
-                                        className="flex-1 bg-white/10 text-white font-bold py-4 rounded-xl hover:bg-white/20 transition-all"
-                                    >
-                                        Back
-                                    </button>
-                                    <button 
-                                        onClick={handleConfirm}
-                                        disabled={loading}
-                                        className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-purple-500/30 transition-all"
-                                    >
-                                        {loading ? <div className="loader w-5 h-5 border-2"></div> : `Pay $${finalTotal}`}
-                                    </button>
-                                </div>
-                            </div>
-                        )}
-                        
-                        {step === 4 && (
                             <div className="text-center py-8">
                                 <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
                                     <Check size={40} className="text-green-400" />
                                 </div>
-                                <h2 className="font-display text-2xl font-bold mb-2 text-white">Booking Confirmed!</h2>
-                                <p className="text-gray-400 mb-2">Your reservation at {hotel.name} has been confirmed.</p>
-                                <div className="bg-white/5 rounded-xl p-4 mb-6 inline-block">
-                                    <p className="text-sm text-gray-400">Confirmation Code</p>
-                                    <p className="text-2xl font-mono font-bold text-purple-400">BH{Date.now().toString().slice(-6).toUpperCase()}</p>
-                                </div>
-                                <div className="space-y-2 text-sm text-gray-400 mb-6">
-                                    <p>Check-in: {new Date().toLocaleDateString()}</p>
-                                    <p>{bookingData.nights} nights • {hotel.maxGuests} guests</p>
-                                    <p className="text-white font-semibold">Total paid: ${finalTotal} via {paymentMethod}</p>
-                                </div>
+                                <h2 className="font-display text-2xl font-bold mb-2">Booking Confirmed!</h2>
+                                <p className="text-gray-400 mb-6">Your reservation at {hotel.name} has been confirmed. Check your email for details.</p>
                                 <button 
                                     onClick={onClose}
                                     className="bg-purple-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-purple-700 transition-colors"
@@ -1337,292 +707,264 @@
             );
         };
 
-        const HostDashboard = ({ onPropertyAdded }) => {
-            const [step, setStep] = useState(1);
-            const [loading, setLoading] = useState(false);
-            const [previewImages, setPreviewImages] = useState([]);
-            const [propertyData, setPropertyData] = useState({
-                name: '',
-                location: '',
-                price: '',
-                description: '',
-                propertyType: 'apartment',
-                season: 'sunny',
-                maxGuests: 2,
-                bedrooms: 1,
-                bathrooms: 1,
-                amenities: []
-            });
-            
-            const amenitiesList = [
-                { id: 'wifi', label: 'WiFi', icon: Wifi },
-                { id: 'pool', label: 'Pool', icon: Waves },
-                { id: 'gym', label: 'Gym', icon: Dumbbell },
-                { id: 'spa', label: 'Spa', icon: Sparkles },
-                { id: 'parking', label: 'Parking', icon: Car },
-                { id: 'ac', label: 'Air Conditioning', icon: Wind },
-                { id: 'kitchen', label: 'Kitchen', icon: Coffee },
-                { id: 'view', label: 'Great View', icon: SunIcon },
-                { id: 'fireplace', label: 'Fireplace', icon: () => <span>🔥</span> },
-                { id: 'ski', label: 'Ski Access', icon: Snowflake }
-            ];
-            
-            const handleImageUpload = (e) => {
-                const files = Array.from(e.target.files);
-                const newImages = files.map(file => URL.createObjectURL(file));
-                setPreviewImages([...previewImages, ...newImages]);
-            };
-            
-            const removeImage = (index) => {
-                setPreviewImages(previewImages.filter((_, i) => i !== index));
-            };
-            
-            const toggleAmenity = (id) => {
-                const newAmenities = propertyData.amenities.includes(id)
-                    ? propertyData.amenities.filter(a => a !== id)
-                    : [...propertyData.amenities, id];
-                setPropertyData({...propertyData, amenities: newAmenities});
-            };
-            
-            const handleSubmit = async () => {
-                setLoading(true);
-                try {
-                    const newProperty = await API.addProperty({
-                        ...propertyData,
-                        price: parseInt(propertyData.price),
-                        images: previewImages.length > 0 ? previewImages : [
-                            'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80'
-                        ]
-                    });
-                    onPropertyAdded(newProperty);
-                    setStep(4);
-                } catch (error) {
-                    alert('Failed to add property');
-                } finally {
-                    setLoading(false);
-                }
-            };
+        const FilterBar = ({ filters, setFilters, viewMode, setViewMode }) => {
+            const [priceRange, setPriceRange] = useState([0, 2000]);
+            const amenities = ['wifi', 'pool', 'spa', 'gym', 'bar'];
             
             return (
-                <div className="min-h-screen pt-24 pb-12 px-6">
-                    <div className="max-w-4xl mx-auto">
-                        <div className="mb-8">
-                            <h1 className="font-display text-4xl font-bold mb-2 text-white">Become a <span className="text-gradient">Host</span></h1>
-                            <p className="text-gray-400">List your penthouse, mansion, or villa and start earning</p>
+                <div className="glass-panel rounded-2xl p-6 mb-8 sticky top-24 z-30">
+                    <div className="flex flex-col md:flex-row gap-6 items-start md:items-center justify-between">
+                        <div className="flex gap-4 overflow-x-auto scroll-hide pb-2 md:pb-0">
+                            {amenities.map(amenity => (
+                                <button
+                                    key={amenity}
+                                    onClick={() => {
+                                        const newAmenities = filters.amenities?.includes(amenity)
+                                            ? filters.amenities.filter(a => a !== amenity)
+                                            : [...(filters.amenities || []), amenity];
+                                        setFilters({...filters, amenities: newAmenities});
+                                    }}
+                                    className={`flex items-center gap-2 px-4 py-2 rounded-full border transition-all whitespace-nowrap ${
+                                        filters.amenities?.includes(amenity)
+                                            ? 'bg-purple-600 border-purple-600 text-white'
+                                            : 'border-purple-500/30 text-gray-400 hover:border-purple-500'
+                                    }`}
+                                >
+                                    <AmenityIcon type={amenity} />
+                                    <span className="capitalize">{amenity}</span>
+                                </button>
+                            ))}
                         </div>
                         
-                        <div className="glass-panel rounded-3xl p-8">
-                            {step === 1 && (
-                                <div className="space-y-6">
-                                    <div className="flex items-center gap-4 mb-6">
-                                        <div className="w-12 h-12 rounded-full bg-purple-600/20 flex items-center justify-center">
-                                            <Home className="text-purple-400" size={24} />
-                                        </div>
-                                        <div>
-                                            <h2 className="font-display text-xl font-bold text-white">Property Details</h2>
-                                            <p className="text-gray-400 text-sm">Basic information about your listing</p>
-                                        </div>
-                                    </div>
-                                    
-                                    <div className="grid md:grid-cols-2 gap-4">
-                                        <div className="md:col-span-2">
-                                            <label className="text-gray-300 text-sm mb-2 block">Property Name</label>
-                                            <input 
-                                                type="text" 
-                                                placeholder="e.g., Sunset Boulevard Penthouse"
-                                                className="search-input w-full px-4 py-3 rounded-xl text-white"
-                                                value={propertyData.name}
-                                                onChange={e => setPropertyData({...propertyData, name: e.target.value})}
-                                            />
-                                        </div>
-                                        
-                                        <div className="md:col-span-2">
-                                            <label className="text-gray-300 text-sm mb-2 block">Location</label>
-                                            <input 
-                                                type="text" 
-                                                placeholder="City, Country"
-                                                className="search-input w-full px-4 py-3 rounded-xl text-white"
-                                                value={propertyData.location}
-                                                onChange={e => setPropertyData({...propertyData, location: e.target.value})}
-                                            />
-                                        </div>
-                                        
-                                        <div>
-                                            <label className="text-gray-300 text-sm mb-2 block">Property Type</label>
-                                            <select 
-                                                className="search-input w-full px-4 py-3 rounded-xl text-white"
-                                                value={propertyData.propertyType}
-                                                onChange={e => setPropertyData({...propertyData, propertyType: e.target.value})}
-                                            >
-                                                <option value="penthouse">Penthouse</option>
-                                                <option value="mansion">Mansion</option>
-                                                <option value="villa">Villa</option>
-                                                <option value="apartment">Luxury Apartment</option>
-                                            </select>
-                                        </div>
-                                        
-                                        <div>
-                                            <label className="text-gray-300 text-sm mb-2 block">Season/Vibe</label>
-                                            <select 
-                                                className="search-input w-full px-4 py-3 rounded-xl text-white"
-                                                value={propertyData.season}
-                                                onChange={e => setPropertyData({...propertyData, season: e.target.value})}
-                                            >
-                                                <option value="sunny">Sunny/Beach</option>
-                                                <option value="winter">Winter/Snow</option>
-                                                <option value="autumn">Autumn/Cozy</option>
-                                                <option value="spring">Spring/Garden</option>
-                                            </select>
-                                        </div>
-                                        
-                                        <div>
-                                            <label className="text-gray-300 text-sm mb-2 block">Price per Night ($)</label>
-                                            <input 
-                                                type="number" 
-                                                placeholder="500"
-                                                className="search-input w-full px-4 py-3 rounded-xl text-white"
-                                                value={propertyData.price}
-                                                onChange={e => setPropertyData({...propertyData, price: e.target.value})}
-                                            />
-                                        </div>
-                                        
-                                        <div>
-                                            <label className="text-gray-300 text-sm mb-2 block">Max Guests</label>
-                                            <input 
-                                                type="number" 
-                                                placeholder="4"
-                                                className="search-input w-full px-4 py-3 rounded-xl text-white"
-                                                value={propertyData.maxGuests}
-                                                onChange={e => setPropertyData({...propertyData, maxGuests: e.target.value})}
-                                            />
-                                        </div>
-                                        
-                                        <div className="grid grid-cols-2 gap-4 md:col-span-2">
-                                            <div>
-                                                <label className="text-gray-300 text-sm mb-2 block">Bedrooms</label>
-                                                <input 
-                                                    type="number" 
-                                                    className="search-input w-full px-4 py-3 rounded-xl text-white"
-                                                    value={propertyData.bedrooms}
-                                                    onChange={e => setPropertyData({...propertyData, bedrooms: e.target.value})}
-                                                />
-                                            </div>
-                                            <div>
-                                                <label className="text-gray-300 text-sm mb-2 block">Bathrooms</label>
-                                                <input 
-                                                    type="number" 
-                                                    className="search-input w-full px-4 py-3 rounded-xl text-white"
-                                                    value={propertyData.bathrooms}
-                                                    onChange={e => setPropertyData({...propertyData, bathrooms: e.target.value})}
-                                                />
-                                            </div>
-                                        </div>
-                                        
-                                        <div className="md:col-span-2">
-                                            <label className="text-gray-300 text-sm mb-2 block">Description</label>
-                                            <textarea 
-                                                placeholder="Describe your property, unique features, nearby attractions..."
-                                                className="search-input w-full px-4 py-3 rounded-xl text-white h-32 resize-none"
-                                                value={propertyData.description}
-                                                onChange={e => setPropertyData({...propertyData, description: e.target.value})}
-                                            />
-                                        </div>
-                                    </div>
-                                    
-                                    <button 
-                                        onClick={() => setStep(2)}
-                                        disabled={!propertyData.name || !propertyData.location || !propertyData.price}
-                                        className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-4 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg hover:shadow-purple-500/30 transition-all"
-                                    >
-                                        Continue to Amenities
-                                    </button>
-                                </div>
-                            )}
+                        <div className="flex items-center gap-4">
+                            <div className="flex items-center gap-2 bg-white/5 rounded-lg p-1">
+                                <button 
+                                    onClick={() => setViewMode('grid')}
+                                    className={`p-2 rounded-md transition-all ${viewMode === 'grid' ? 'bg-purple-600 text-white' : 'text-gray-400'}`}
+                                >
+                                    <Grid size={18} />
+                                </button>
+                                <button 
+                                    onClick={() => setViewMode('list')}
+                                    className={`p-2 rounded-md transition-all ${viewMode === 'list' ? 'bg-purple-600 text-white' : 'text-gray-400'}`}
+                                >
+                                    <List size={18} />
+                                </button>
+                            </div>
                             
-                            {step === 2 && (
-                                <div className="space-y-6">
-                                    <div className="flex items-center gap-4 mb-6">
-                                        <div className="w-12 h-12 rounded-full bg-purple-600/20 flex items-center justify-center">
-                                            <Sparkles className="text-purple-400" size={24} />
-                                        </div>
-                                        <div>
-                                            <h2 className="font-display text-xl font-bold text-white">Amenities</h2>
-                                            <p className="text-gray-400 text-sm">What does your property offer?</p>
-                                        </div>
-                                    </div>
-                                    
-                                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                                        {amenitiesList.map(amenity => {
-                                            const Icon = amenity.icon;
-                                            const isSelected = propertyData.amenities.includes(amenity.id);
-                                            return (
-                                                <button
-                                                    key={amenity.id}
-                                                    onClick={() => toggleAmenity(amenity.id)}
-                                                    className={`flex items-center gap-3 p-4 rounded-xl border transition-all ${
-                                                        isSelected 
-                                                            ? 'bg-purple-600/20 border-purple-500 text-white' 
-                                                            : 'bg-white/5 border-purple-500/20 text-gray-400 hover:border-purple-500/50'
-                                                    }`}
-                                                >
-                                                    <Icon size={20} />
-                                                    <span className="text-sm font-medium">{amenity.label}</span>
-                                                </button>
-                                            );
-                                        })}
-                                    </div>
-                                    
-                                    <div className="flex gap-3 mt-6">
-                                        <button 
-                                            onClick={() => setStep(1)}
-                                            className="flex-1 bg-white/10 text-white font-bold py-4 rounded-xl hover:bg-white/20 transition-all"
-                                        >
-                                            Back
+                            <select 
+                                className="search-input px-4 py-2 rounded-lg text-white text-sm"
+                                value={filters.sort || 'recommended'}
+                                onChange={e => setFilters({...filters, sort: e.target.value})}
+                            >
+                                <option value="recommended">Recommended</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="rating">Highest Rated</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div className="mt-4 pt-4 border-t border-purple-500/10 flex items-center gap-4">
+                        <span className="text-gray-400 text-sm">Price range:</span>
+                        <input 
+                            type="range" 
+                            min="0" 
+                            max="2000" 
+                            value={filters.maxPrice || 2000}
+                            onChange={e => setFilters({...filters, maxPrice: parseInt(e.target.value)})}
+                            className="flex-1 max-w-xs accent-purple-600"
+                        />
+                        <span className="text-white font-semibold">${filters.maxPrice || 2000}</span>
+                    </div>
+                </div>
+            );
+        };
+
+        const App = () => {
+            const [hotels, setHotels] = useState([]);
+            const [loading, setLoading] = useState(true);
+            const [selectedHotel, setSelectedHotel] = useState(null);
+            const [filters, setFilters] = useState({});
+            const [viewMode, setViewMode] = useState('grid');
+            const [bookings, setBookings] = useState([]);
+            
+            useEffect(() => {
+                loadHotels();
+                loadBookings();
+            }, []);
+            
+            const loadHotels = async () => {
+                setLoading(true);
+                const results = await API.searchHotels({});
+                setHotels(results);
+                setLoading(false);
+            };
+            
+            const loadBookings = async () => {
+                const userBookings = await API.getBookings();
+                setBookings(userBookings);
+            };
+            
+            const handleSearch = async (searchData) => {
+                setLoading(true);
+                const results = await API.searchHotels({
+                    location: searchData.location,
+                    ...filters
+                });
+                setHotels(results);
+                setLoading(false);
+                
+                // Scroll to results
+                document.getElementById('results')?.scrollIntoView({ behavior: 'smooth' });
+            };
+            
+            useEffect(() => {
+                if (filters.amenities || filters.maxPrice) {
+                    handleSearch({ location: '' });
+                }
+            }, [filters]);
+            
+            return (
+                <div className="min-h-screen bg-[#0a0a0f]">
+                    <Navbar cartCount={bookings.length} />
+                    
+                    <Hero onSearch={handleSearch} />
+                    
+                    <div id="results" className="max-w-7xl mx-auto px-6 py-20">
+                        <div className="flex justify-between items-end mb-8">
+                            <div>
+                                <h2 className="font-display text-3xl md:text-4xl font-bold mb-2">
+                                    Featured <span className="text-gradient">Properties</span>
+                                </h2>
+                                <p className="text-gray-400">Handpicked luxury stays for the discerning traveler</p>
+                            </div>
+                            <div className="hidden md:block text-gray-400">
+                                Showing {hotels.length} properties
+                            </div>
+                        </div>
+                        
+                        <FilterBar 
+                            filters={filters} 
+                            setFilters={setFilters}
+                            viewMode={viewMode}
+                            setViewMode={setViewMode}
+                        />
+                        
+                        {loading ? (
+                            <div className="flex items-center justify-center py-20">
+                                <div className="loader"></div>
+                            </div>
+                        ) : (
+                            <div className={`grid gap-6 ${
+                                viewMode === 'grid' 
+                                    ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3' 
+                                    : 'grid-cols-1'
+                            }`}>
+                                {hotels.map(hotel => (
+                                    <HotelCard 
+                                        key={hotel.id} 
+                                        hotel={hotel} 
+                                        onBook={setSelectedHotel}
+                                    />
+                                ))}
+                            </div>
+                        )}
+                        
+                        {!loading && hotels.length === 0 && (
+                            <div className="text-center py-20">
+                                <div className="text-6xl mb-4">🔍</div>
+                                <h3 className="text-2xl font-bold text-white mb-2">No properties found</h3>
+                                <p className="text-gray-400">Try adjusting your filters or search criteria</p>
+                            </div>
+                        )}
+                    </div>
+                    
+                    <div className="bg-gradient-to-b from-transparent to-purple-900/20 py-20">
+                        <div className="max-w-7xl mx-auto px-6">
+                            <div className="glass-panel rounded-3xl p-8 md:p-12 text-center relative overflow-hidden">
+                                <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-pink-600/20"></div>
+                                <div className="relative z-10">
+                                    <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
+                                        Ready for your next <span className="text-gradient">adventure?</span>
+                                    </h2>
+                                    <p className="text-gray-300 max-w-2xl mx-auto mb-8 text-lg">
+                                        Join over 50,000 travelers who trust BHAST HOUSE for their luxury accommodations.
+                                        Exclusive deals and VIP treatment await.
+                                    </p>
+                                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                                        <button className="bg-white text-gray-900 px-8 py-4 rounded-full font-bold hover:bg-gray-100 transition-colors">
+                                            Create Account
                                         </button>
-                                        <button 
-                                            onClick={() => setStep(3)}
-                                            className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-4 rounded-xl hover:shadow-lg hover:shadow-purple-500/30 transition-all"
-                                        >
-                                            Continue to Photos
+                                        <button className="border border-purple-500 text-white px-8 py-4 rounded-full font-bold hover:bg-purple-600/20 transition-colors">
+                                            View All Deals
                                         </button>
                                     </div>
                                 </div>
-                            )}
-                            
-                            {step === 3 && (
-                                <div className="space-y-6">
-                                    <div className="flex items-center gap-4 mb-6">
-                                        <div className="w-12 h-12 rounded-full bg-purple-600/20 flex items-center justify-center">
-                                            <ImageIcon className="text-purple-400" size={24} />
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <footer className="border-t border-purple-500/10 py-12 mt-20">
+                        <div className="max-w-7xl mx-auto px-6">
+                            <div className="grid md:grid-cols-4 gap-8 mb-8">
+                                <div>
+                                    <div className="flex items-center gap-2 mb-4">
+                                        <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-pink-600 rounded-lg flex items-center justify-center">
+                                            <span className="text-white font-bold">B</span>
                                         </div>
-                                        <div>
-                                            <h2 className="font-display text-xl font-bold text-white">Photos</h2>
-                                            <p className="text-gray-400 text-sm">Upload high-quality images of your property</p>
-                                        </div>
+                                        <span className="font-display font-bold text-xl text-white">
+                                            BHAST<span className="text-purple-400">HOUSE</span>
+                                        </span>
                                     </div>
-                                    
-                                    <div 
-                                        className="upload-zone rounded-2xl p-8 text-center cursor-pointer"
-                                        onClick={() => document.getElementById('file-upload').click()}
-                                        onDragOver={(e) => {
-                                            e.preventDefault();
-                                            e.currentTarget.classList.add('dragover');
-                                        }}
-                                        onDragLeave={(e) => {
-                                            e.currentTarget.classList.remove('dragover');
-                                        }}
-                                        onDrop={(e) => {
-                                            e.preventDefault();
-                                            e.currentTarget.classList.remove('dragover');
-                                            const files = Array.from(e.dataTransfer.files);
-                                            const newImages = files.map(file => URL.createObjectURL(file));
-                                            setPreviewImages([...previewImages, ...newImages]);
-                                        }}
-                                    >
-                                        <input 
-                                            id="file-upload"
-                                            type="file" 
-                                            multiple 
-                                            accept="image/*"
-                                            className="hidden"
-                                            onChange={
+                                    <p className="text-gray-400 text-sm">Redefining luxury travel with dark aesthetics and premium comfort.</p>
+                                </div>
+                                <div>
+                                    <h4 className="font-bold text-white mb-4">Company</h4>
+                                    <ul className="space-y-2 text-gray-400 text-sm">
+                                        <li><a href="#" className="hover:text-purple-400">About Us</a></li>
+                                        <li><a href="#" className="hover:text-purple-400">Careers</a></li>
+                                        <li><a href="#" className="hover:text-purple-400">Press</a></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 className="font-bold text-white mb-4">Support</h4>
+                                    <ul className="space-y-2 text-gray-400 text-sm">
+                                        <li><a href="#" className="hover:text-purple-400">Help Center</a></li>
+                                        <li><a href="#" className="hover:text-purple-400">Terms of Service</a></li>
+                                        <li><a href="#" className="hover:text-purple-400">Privacy Policy</a></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 className="font-bold text-white mb-4">Connect</h4>
+                                    <div className="flex gap-4">
+                                        {['Twitter', 'Instagram', 'Discord'].map(social => (
+                                            <div key={social} className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-purple-600/20 cursor-pointer transition-colors">
+                                                <span className="text-xs text-gray-400">{social[0]}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="border-t border-purple-500/10 pt-8 text-center text-gray-500 text-sm">
+                                © 2026 BHAST HOUSE. All rights reserved. Dark luxury redefined.
+                            </div>
+                        </div>
+                    </footer>
+                    
+                    {selectedHotel && (
+                        <BookingModal 
+                            hotel={selectedHotel} 
+                            onClose={() => setSelectedHotel(null)}
+                            onConfirm={loadBookings}
+                        />
+                    )}
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>                          
